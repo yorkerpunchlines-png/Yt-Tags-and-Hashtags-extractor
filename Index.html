@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Viral Tag Generator Pro</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background: #0f172a;
+        color: white;
+        text-align: center;
+        padding: 30px;
+    }
+
+    input, button {
+        padding: 10px;
+        margin: 10px;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 8px;
+        border: none;
+    }
+
+    button {
+        background: #22c55e;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .box {
+        margin-top: 20px;
+        padding: 20px;
+        background: #1e293b;
+        border-radius: 10px;
+    }
+
+    .tag {
+        display: inline-block;
+        margin: 5px;
+        padding: 6px 12px;
+        background: #334155;
+        border-radius: 20px;
+        font-size: 14px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<h1>🔥 Viral Tag & Hashtag Generator Pro</h1>
+
+<input type="text" id="niche" placeholder="Enter niche (cricket, gaming, ai, vlog)">
+<br>
+<input type="text" id="title" placeholder="Enter video title">
+<br>
+<button onclick="generate()">Generate Viral Tags</button>
+
+<div class="box">
+    <h3>🔥 Hashtags</h3>
+    <div id="hashtags"></div>
+
+    <h3>🏷️ Tags</h3>
+    <div id="tags"></div>
+</div>
+
+<script>
+function generate() {
+
+    let niche = document.getElementById("niche").value.toLowerCase();
+    let title = document.getElementById("title").value.toLowerCase();
+
+    let baseTags = ["viral", "trending", "youtube", "2026", "must watch"];
+    let hashtagBase = ["#viral", "#trending", "#youtube", "#shorts", "#explore"];
+
+    // ===== CRICKET =====
+    if (niche.includes("cricket")) {
+        baseTags.push("cricket highlights", "ipl", "live match", "bcci update", "world cup");
+        hashtagBase.push("#cricket", "#IPL", "#BCCI", "#worldcup", "#crickethighlights");
+    }
+
+    // ===== GAMING =====
+    else if (niche.includes("gaming")) {
+        baseTags.push("gaming highlights", "pro gameplay", "live stream", "bgmi", "free fire");
+        hashtagBase.push("#gaming", "#BGMI", "#freefire", "#gameplay", "#livestream");
+    }
+
+    // ===== AI / TECH =====
+    else if (niche.includes("ai") || niche.includes("tech")) {
+        baseTags.push("ai tools", "chatgpt", "technology update", "future tech", "automation");
+        hashtagBase.push("#AI", "#chatgpt", "#technology", "#tech", "#future");
+    }
+
+    // ===== VLOG =====
+    else if (niche.includes("vlog")) {
+        baseTags.push("daily vlog", "lifestyle", "travel vlog", "fun moments", "day in life");
+        hashtagBase.push("#vlog", "#dailyvlog", "#lifestyle", "#travel", "#fun");
+    }
+
+    // extra boost based on title
+    if (title.includes("viral")) {
+        baseTags.push("viral video 2026");
+        hashtagBase.push("#viralvideo");
+    }
+
+    if (title.includes("shorts")) {
+        hashtagBase.push("#shortsfeed");
+    }
+
+    // SHOW OUTPUT
+    document.getElementById("hashtags").innerHTML =
+        hashtagBase.map(tag => `<span class="tag">${tag}</span>`).join("");
+
+    document.getElementById("tags").innerHTML =
+        baseTags.map(tag => `<span class="tag">${tag}</span>`).join("");
+}
+</script>
+
+</body>
+</html>
