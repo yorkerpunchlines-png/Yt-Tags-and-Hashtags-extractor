@@ -2,120 +2,213 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Viral Tag Generator Pro</title>
+<title>Creator Studio Pro</title>
 
 <style>
-    body {
-        font-family: Arial;
-        background: #0f172a;
-        color: white;
-        text-align: center;
-        padding: 30px;
-    }
+body {
+    font-family: Arial;
+    margin: 0;
+    transition: 0.3s;
+    background: #ffffff;
+    color: #111;
+}
 
-    input, button {
-        padding: 10px;
-        margin: 10px;
-        width: 80%;
-        max-width: 400px;
-        border-radius: 8px;
-        border: none;
-    }
+.dark {
+    background: #0f172a;
+    color: white;
+}
 
-    button {
-        background: #22c55e;
-        color: white;
-        cursor: pointer;
-        font-weight: bold;
-    }
+.header {
+    background: #ff0000;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
 
-    .box {
-        margin-top: 20px;
-        padding: 20px;
-        background: #1e293b;
-        border-radius: 10px;
-    }
+.container {
+    padding: 15px;
+    text-align: center;
+}
 
-    .tag {
-        display: inline-block;
-        margin: 5px;
-        padding: 6px 12px;
-        background: #334155;
-        border-radius: 20px;
-        font-size: 14px;
-    }
+input, select {
+    width: 90%;
+    max-width: 400px;
+    padding: 12px;
+    margin: 8px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background: #ff0000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover { background: #cc0000; }
+
+.card {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #fff5f5;
+}
+
+.dark .card {
+    background: #1e293b;
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 4px;
+    background: #ffe0e0;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.dark .tag {
+    background: #334155;
+    color: white;
+}
 </style>
-
 </head>
 
 <body>
 
-<h1>🔥 Viral Tag & Hashtag Generator Pro</h1>
+<div class="header">
+🔥 Creator Studio Pro (Next Level YouTube Tool)
+</div>
 
-<input type="text" id="niche" placeholder="Enter niche (cricket, gaming, ai, vlog)">
-<br>
-<input type="text" id="title" placeholder="Enter video title">
-<br>
-<button onclick="generate()">Generate Viral Tags</button>
+<div class="container">
 
-<div class="box">
-    <h3>🔥 Hashtags</h3>
-    <div id="hashtags"></div>
+<button onclick="toggleMode()">🌙 Dark Mode</button>
 
-    <h3>🏷️ Tags</h3>
-    <div id="tags"></div>
+<input id="niche" placeholder="Enter niche (cricket, gaming, ai)">
+<input id="title" placeholder="Enter video idea">
+
+<select id="lang">
+<option value="en">English</option>
+<option value="hi">Hindi</option>
+<option value="hinglish">Hinglish</option>
+</select>
+
+<button onclick="generate()">🚀 AI Generate</button>
+<button onclick="copyAll()">📋 Copy All</button>
+
+<div class="card">
+<h3>📊 Scores</h3>
+<div id="score"></div>
+</div>
+
+<div class="card">
+<h3>🎯 Viral Titles (A/B Test)</h3>
+<div id="titles"></div>
+</div>
+
+<div class="card">
+<h3>🖼️ Thumbnail Text Ideas</h3>
+<div id="thumb"></div>
+</div>
+
+<div class="card">
+<h3>🏷️ Tags</h3>
+<div id="tags"></div>
+</div>
+
+<div class="card">
+<h3>🔥 Hashtags</h3>
+<div id="hash"></div>
+</div>
+
 </div>
 
 <script>
-function generate() {
 
-    let niche = document.getElementById("niche").value.toLowerCase();
-    let title = document.getElementById("title").value.toLowerCase();
+let finalData = "";
 
-    let baseTags = ["viral", "trending", "youtube", "2026", "must watch"];
-    let hashtagBase = ["#viral", "#trending", "#youtube", "#shorts", "#explore"];
-
-    // ===== CRICKET =====
-    if (niche.includes("cricket")) {
-        baseTags.push("cricket highlights", "ipl", "live match", "bcci update", "world cup");
-        hashtagBase.push("#cricket", "#IPL", "#BCCI", "#worldcup", "#crickethighlights");
-    }
-
-    // ===== GAMING =====
-    else if (niche.includes("gaming")) {
-        baseTags.push("gaming highlights", "pro gameplay", "live stream", "bgmi", "free fire");
-        hashtagBase.push("#gaming", "#BGMI", "#freefire", "#gameplay", "#livestream");
-    }
-
-    // ===== AI / TECH =====
-    else if (niche.includes("ai") || niche.includes("tech")) {
-        baseTags.push("ai tools", "chatgpt", "technology update", "future tech", "automation");
-        hashtagBase.push("#AI", "#chatgpt", "#technology", "#tech", "#future");
-    }
-
-    // ===== VLOG =====
-    else if (niche.includes("vlog")) {
-        baseTags.push("daily vlog", "lifestyle", "travel vlog", "fun moments", "day in life");
-        hashtagBase.push("#vlog", "#dailyvlog", "#lifestyle", "#travel", "#fun");
-    }
-
-    // extra boost based on title
-    if (title.includes("viral")) {
-        baseTags.push("viral video 2026");
-        hashtagBase.push("#viralvideo");
-    }
-
-    if (title.includes("shorts")) {
-        hashtagBase.push("#shortsfeed");
-    }
-
-    // SHOW OUTPUT
-    document.getElementById("hashtags").innerHTML =
-        hashtagBase.map(tag => `<span class="tag">${tag}</span>`).join("");
-
-    document.getElementById("tags").innerHTML =
-        baseTags.map(tag => `<span class="tag">${tag}</span>`).join("");
+function toggleMode(){
+    document.body.classList.toggle("dark");
 }
+
+function generate(){
+
+let niche = document.getElementById("niche").value.toLowerCase();
+let title = document.getElementById("title").value;
+let lang = document.getElementById("lang").value;
+
+let tags = ["viral", "trending", "youtube", "2026", "must watch"];
+let hash = ["#viral","#trending","#youtube"];
+
+let titles = [
+`🔥 ${title} | MUST WATCH 😱`,
+`🚀 ${title} (100% Viral)`,
+`😱 Nobody Expected This! ${title}`
+];
+
+let thumbs = [
+"NO ONE EXPECTED THIS 😱",
+"100% VIRAL VIDEO 🔥",
+"WAIT FOR END 😳"
+];
+
+// niche boost
+if(niche.includes("cricket")){
+tags.push("cricket","ipl","world cup");
+hash.push("#cricket","#IPL");
+}
+
+if(niche.includes("gaming")){
+tags.push("bgmi","free fire","live");
+hash.push("#gaming","#BGMI");
+}
+
+if(lang==="hi"){
+tags.push("हिंदी","भारत","नया वीडियो");
+}
+
+if(lang==="hinglish"){
+tags.push("new video","desi style","india");
+}
+
+// scores
+let score = Math.floor(Math.random()*30 + 70);
+let click = Math.floor(Math.random()*25 + 75);
+
+document.getElementById("score").innerHTML =
+`🔥 Viral Score: ${score}% <br> 🎯 Clickability: ${click}%`;
+
+// show titles
+document.getElementById("titles").innerHTML =
+titles.map(t=>`<div class="tag">${t}</div>`).join("");
+
+// thumbnails
+document.getElementById("thumb").innerHTML =
+thumbs.map(t=>`<div class="tag">${t}</div>`).join("");
+
+// tags
+document.getElementById("tags").innerHTML =
+tags.map(t=>`<div class="tag">${t}</div>`).join("");
+
+// hashtags
+document.getElementById("hash").innerHTML =
+hash.map(t=>`<div class="tag">${t}</div>`).join("");
+
+finalData = titles.join("\n") + "\n" + tags.join(",") + "\n" + hash.join(",");
+}
+
+function copyAll(){
+navigator.clipboard.writeText(finalData);
+alert("Copied All Content 🚀");
+}
+
 </script>
 
 </body>
