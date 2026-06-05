@@ -2,81 +2,148 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Creator Studio Pro</title>
+<title>Creator Studio Pro - Redesigned</title>
 
 <style>
-body {
-    font-family: Arial;
-    margin: 0;
-    transition: 0.3s;
-    background: #ffffff;
-    color: #111;
+body{
+margin:0;
+font-family:Arial;
+background: linear-gradient(135deg,#ffffff,#ffe5e5);
+color:#111;
 }
 
-.dark {
-    background: #0f172a;
-    color: white;
+/* HEADER */
+.header{
+background:#ff0000;
+color:white;
+padding:15px;
+text-align:center;
+font-size:18px;
+font-weight:bold;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
-.header {
-    background: #ff0000;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
+/* MAIN LAYOUT */
+.container{
+padding:15px;
+max-width:900px;
+margin:auto;
 }
 
-.container {
-    padding: 15px;
-    text-align: center;
+/* INPUT BOX */
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:12px;
+border:1px solid #ddd;
+outline:none;
 }
 
-input, select {
-    width: 90%;
-    max-width: 400px;
-    padding: 12px;
-    margin: 8px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+/* BUTTONS */
+button{
+padding:12px;
+margin-top:10px;
+width:100%;
+border:none;
+border-radius:12px;
+background:#ff0000;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
 }
 
-button {
-    padding: 12px;
-    margin: 5px;
-    border: none;
-    border-radius: 10px;
-    background: #ff0000;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+button:hover{
+transform:scale(1.02);
+background:#cc0000;
 }
 
-button:hover { background: #cc0000; }
-
-.card {
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 12px;
-    background: #fff5f5;
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:1fr;
+gap:15px;
+margin-top:15px;
 }
 
-.dark .card {
-    background: #1e293b;
+@media(min-width:768px){
+.grid{
+grid-template-columns:1fr 1fr;
+}
 }
 
-.tag {
-    display: inline-block;
-    padding: 6px 10px;
-    margin: 4px;
-    background: #ffe0e0;
-    border-radius: 20px;
-    font-size: 13px;
+/* CARD */
+.card{
+background:rgba(255,255,255,0.7);
+backdrop-filter: blur(10px);
+padding:15px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+animation:fade 0.4s ease-in-out;
 }
 
-.dark .tag {
-    background: #334155;
-    color: white;
+@keyframes fade{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+h3{
+margin-top:0;
+color:#ff0000;
+}
+
+/* TAGS */
+.tag{
+display:inline-block;
+padding:6px 10px;
+margin:4px;
+background:#ffe0e0;
+border-radius:20px;
+font-size:12px;
+}
+
+/* PROGRESS BAR */
+.bar{
+width:100%;
+height:10px;
+background:#eee;
+border-radius:20px;
+overflow:hidden;
+margin:5px 0;
+}
+
+.fill{
+height:100%;
+background:#ff0000;
+width:0%;
+transition:0.5s;
+}
+
+/* TOAST */
+.toast{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#111;
+color:white;
+padding:10px 15px;
+border-radius:10px;
+opacity:0;
+transition:0.3s;
+}
+
+.show{
+opacity:1;
+bottom:30px;
+}
+
+.small-btn{
+width:auto;
+padding:8px 10px;
+margin:5px;
+font-size:12px;
 }
 </style>
 </head>
@@ -84,15 +151,13 @@ button:hover { background: #cc0000; }
 <body>
 
 <div class="header">
-🔥 Creator Studio Pro (Next Level YouTube Tool)
+🔥 Creator Studio Pro (Ultra Redesigned UI)
 </div>
 
 <div class="container">
 
-<button onclick="toggleMode()">🌙 Dark Mode</button>
-
 <input id="niche" placeholder="Enter niche (cricket, gaming, ai)">
-<input id="title" placeholder="Enter video idea">
+<input id="title" placeholder="Enter video title">
 
 <select id="lang">
 <option value="en">English</option>
@@ -100,60 +165,79 @@ button:hover { background: #cc0000; }
 <option value="hinglish">Hinglish</option>
 </select>
 
-<button onclick="generate()">🚀 AI Generate</button>
-<button onclick="copyAll()">📋 Copy All</button>
+<button onclick="generate()">🚀 Generate AI Pack</button>
 
+<div class="grid">
+
+<!-- SCORES -->
 <div class="card">
-<h3>📊 Scores</h3>
-<div id="score"></div>
+<h3>📊 Viral Score</h3>
+<div class="bar"><div class="fill" id="viralBar"></div></div>
+
+<h3>🎯 SEO Score</h3>
+<div class="bar"><div class="fill" id="seoBar"></div></div>
 </div>
 
+<!-- TITLES -->
 <div class="card">
-<h3>🎯 Viral Titles (A/B Test)</h3>
+<h3>🎯 Viral Titles</h3>
 <div id="titles"></div>
+<button class="small-btn" onclick="copy('titles')">Copy Titles</button>
 </div>
 
+<!-- THUMBNAIL -->
 <div class="card">
-<h3>🖼️ Thumbnail Text Ideas</h3>
+<h3>🖼 Thumbnail Text</h3>
 <div id="thumb"></div>
+<button class="small-btn" onclick="copy('thumb')">Copy Text</button>
 </div>
 
+<!-- TAGS -->
 <div class="card">
-<h3>🏷️ Tags</h3>
+<h3>🏷 Tags</h3>
 <div id="tags"></div>
+<button class="small-btn" onclick="copy('tags')">Copy Tags</button>
 </div>
 
+<!-- HASHTAGS -->
 <div class="card">
 <h3>🔥 Hashtags</h3>
 <div id="hash"></div>
+<button class="small-btn" onclick="copy('hash')">Copy Hashtags</button>
 </div>
 
 </div>
+
+</div>
+
+<div class="toast" id="toast">Copied 🚀</div>
 
 <script>
 
-let finalData = "";
-
-function toggleMode(){
-    document.body.classList.toggle("dark");
+function toast(msg){
+let t=document.getElementById("toast");
+t.innerText=msg;
+t.classList.add("show");
+setTimeout(()=>t.classList.remove("show"),1500);
 }
+
+let data={};
 
 function generate(){
 
-let niche = document.getElementById("niche").value.toLowerCase();
-let title = document.getElementById("title").value;
-let lang = document.getElementById("lang").value;
+let niche=document.getElementById("niche").value.toLowerCase();
+let title=document.getElementById("title").value;
 
-let tags = ["viral", "trending", "youtube", "2026", "must watch"];
-let hash = ["#viral","#trending","#youtube"];
+let tags=["viral","trending","youtube","2026","must watch"];
+let hash=["#viral","#trending","#youtube"];
 
-let titles = [
+let titles=[
 `🔥 ${title} | MUST WATCH 😱`,
-`🚀 ${title} (100% Viral)`,
+`🚀 ${title} (100% VIRAL)`,
 `😱 Nobody Expected This! ${title}`
 ];
 
-let thumbs = [
+let thumb=[
 "NO ONE EXPECTED THIS 😱",
 "100% VIRAL VIDEO 🔥",
 "WAIT FOR END 😳"
@@ -161,52 +245,37 @@ let thumbs = [
 
 // niche boost
 if(niche.includes("cricket")){
-tags.push("cricket","ipl","world cup");
-hash.push("#cricket","#IPL");
+tags.push("cricket","ipl","world cup","highlights","match review");
+hash.push("#cricket","#IPL","#worldcup");
 }
 
 if(niche.includes("gaming")){
-tags.push("bgmi","free fire","live");
-hash.push("#gaming","#BGMI");
-}
-
-if(lang==="hi"){
-tags.push("हिंदी","भारत","नया वीडियो");
-}
-
-if(lang==="hinglish"){
-tags.push("new video","desi style","india");
+tags.push("bgmi","free fire","gameplay","live stream","pro player");
+hash.push("#gaming","#BGMI","#freefire");
 }
 
 // scores
-let score = Math.floor(Math.random()*30 + 70);
-let click = Math.floor(Math.random()*25 + 75);
+let viral=Math.floor(Math.random()*30+70);
+let seo=Math.floor(Math.random()*25+75);
 
-document.getElementById("score").innerHTML =
-`🔥 Viral Score: ${score}% <br> 🎯 Clickability: ${click}%`;
+document.getElementById("viralBar").style.width=viral+"%";
+document.getElementById("seoBar").style.width=seo+"%";
 
-// show titles
-document.getElementById("titles").innerHTML =
-titles.map(t=>`<div class="tag">${t}</div>`).join("");
+// render
+document.getElementById("titles").innerHTML=titles.map(t=>`<div class="tag">${t}</div>`).join("");
+document.getElementById("thumb").innerHTML=thumb.map(t=>`<div class="tag">${t}</div>`).join("");
+document.getElementById("tags").innerHTML=tags.map(t=>`<div class="tag">${t}</div>`).join("");
+document.getElementById("hash").innerHTML=hash.map(t=>`<div class="tag">${t}</div>`).join("");
 
-// thumbnails
-document.getElementById("thumb").innerHTML =
-thumbs.map(t=>`<div class="tag">${t}</div>`).join("");
+data={titles,tags,hash};
 
-// tags
-document.getElementById("tags").innerHTML =
-tags.map(t=>`<div class="tag">${t}</div>`).join("");
-
-// hashtags
-document.getElementById("hash").innerHTML =
-hash.map(t=>`<div class="tag">${t}</div>`).join("");
-
-finalData = titles.join("\n") + "\n" + tags.join(",") + "\n" + hash.join(",");
 }
 
-function copyAll(){
-navigator.clipboard.writeText(finalData);
-alert("Copied All Content 🚀");
+function copy(type){
+
+let text=data[type]?.join("\n")||"";
+navigator.clipboard.writeText(text);
+toast(type+" copied 🚀");
 }
 
 </script>
