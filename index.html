@@ -3,108 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Cinematic Creator Studio Pro</title>
 
 <style>
-body{
+
+*{
 margin:0;
-font-family:Arial;
-background: radial-gradient(circle at top,#1a0000,#000000);
-color:white;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#ffffff;
+color:#111;
 overflow-x:hidden;
 }
 
-/* HEADER */
-.header{
-background:linear-gradient(90deg,#ff0000,#990000);
-padding:15px;
-text-align:center;
-font-weight:bold;
-box-shadow:0 0 20px red;
+/* TOP BANNER */
+
+.top-banner{
+width:100%;
+display:flex;
+justify-content:center;
+padding:15px 10px;
 position:relative;
 z-index:2;
-font-size:18px;
 }
 
-/* CENTER LAYOUT */
+.top-banner img{
+width:95%;
+max-width:550px;
+border-radius:20px;
+box-shadow:
+0 0 15px rgba(255,0,0,.4),
+0 0 35px rgba(255,0,0,.2);
+animation:glow 3s infinite alternate;
+}
+
+@keyframes glow{
+from{transform:scale(1);}
+to{transform:scale(1.02);}
+}
+
+/* HEADER */
+
+.header{
+background:#ff0000;
+color:white;
+text-align:center;
+padding:15px;
+font-size:20px;
+font-weight:bold;
+box-shadow:0 4px 15px rgba(255,0,0,.4);
+position:relative;
+z-index:2;
+}
+
+/* CONTAINER */
+
 .container{
 display:flex;
 flex-direction:column;
 align-items:center;
+padding-bottom:20px;
 }
 
-/* GLASS CARD */
+/* CARDS */
+
 .card{
-background:rgba(255,255,255,0.08);
-backdrop-filter: blur(12px);
-border:1px solid rgba(255,255,255,0.1);
-padding:15px;
-margin-top:15px;
-border-radius:15px;
-animation:fade 0.6s ease;
 width:90%;
 max-width:500px;
+background:white;
+margin-top:15px;
+padding:15px;
+border-radius:15px;
+box-shadow:0 4px 15px rgba(0,0,0,.08);
+border:1px solid #eee;
+position:relative;
+z-index:2;
 }
 
-@keyframes fade{
-from{opacity:0; transform:translateY(10px);}
-to{opacity:1; transform:translateY(0);}
-}
+/* INPUTS */
 
-/* INPUT */
 input,select{
 width:100%;
 padding:12px;
 margin-top:10px;
-border-radius:10px;
-border:none;
+border-radius:12px;
+border:2px solid #ff0000;
 outline:none;
 font-size:16px;
+background:white;
+
+box-shadow:
+0 0 10px rgba(255,255,255,.9),
+0 0 15px rgba(255,0,0,.15);
+
+transition:.3s;
+}
+
+input:focus,
+select:focus{
+box-shadow:
+0 0 15px white,
+0 0 25px #ff0000,
+0 0 35px rgba(255,0,0,.4);
 }
 
 /* BUTTON */
+
 button{
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:12px;
 border:none;
-border-radius:10px;
-background:linear-gradient(90deg,#ff0000,#ff4d4d);
+border-radius:12px;
+background:#ff0000;
 color:white;
+font-size:16px;
 font-weight:bold;
 cursor:pointer;
-transition:0.3s;
+
+box-shadow:
+0 0 15px rgba(255,0,0,.5);
+
+transition:.3s;
 }
 
 button:hover{
-transform:scale(1.03);
+transform:translateY(-2px);
+
+box-shadow:
+0 0 20px #ff0000,
+0 0 40px rgba(255,0,0,.4);
 }
 
 /* TAGS */
+
 .tag{
 display:inline-block;
-padding:6px 10px;
+padding:7px 12px;
 margin:4px;
-background:rgba(255,0,0,0.2);
-border:1px solid rgba(255,0,0,0.3);
-border-radius:20px;
+background:#fff5f5;
+border:1px solid #ff0000;
+color:#ff0000;
 font-size:12px;
+font-weight:bold;
+border-radius:20px;
 }
 
 /* FOOTER */
+
 .footer{
-margin-top:20px;
-padding:20px;
-background:linear-gradient(135deg,#ff0000,#330000);
-text-align:center;
-border-radius:15px;
-box-shadow:0 0 20px red;
 width:90%;
 max-width:500px;
+margin-top:20px;
+padding:20px;
+background:white;
+border-radius:15px;
+text-align:center;
+box-shadow:0 4px 15px rgba(0,0,0,.08);
+border:1px solid #eee;
 }
 
-/* ANIMATION LAYER */
+/* FLOATING ICONS */
+
 #animation-layer{
 position:fixed;
 top:0;
@@ -112,42 +176,46 @@ left:0;
 width:100%;
 height:100%;
 pointer-events:none;
-z-index:0;
 overflow:hidden;
+z-index:0;
 }
 
 .play{
 position:absolute;
 animation:fall linear infinite;
-opacity:0.8;
-filter: drop-shadow(0 0 6px gold);
+opacity:.7;
 }
 
 @keyframes fall{
-0%{transform:translateY(-10vh) rotate(0deg);}
-100%{transform:translateY(110vh) rotate(360deg);opacity:0;}
+0%{
+transform:translateY(-10vh) rotate(0deg);
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
 }
 
-/* OVERLAY */
-.overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:radial-gradient(circle,transparent,black);
-z-index:1;
-pointer-events:none;
-opacity:0.6;
+.ai-status{
+display:inline-block;
+padding:10px;
+color:#ff0000;
+font-weight:bold;
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="overlay"></div>
 <div id="animation-layer"></div>
 
+<!-- TOP IMAGE -->
+<div class="top-banner">
+<img src="banner.jpg" alt="Banner">
+</div>
+
+<!-- HEADER -->
 <div class="header">
 🔥 Cinematic Creator Studio Pro
 </div>
@@ -155,7 +223,9 @@ opacity:0.6;
 <div class="container">
 
 <div class="card">
+
 <input id="niche" placeholder="Enter niche">
+
 <input id="title" placeholder="Enter title">
 
 <select id="lang">
@@ -164,7 +234,10 @@ opacity:0.6;
 <option value="hinglish">Hinglish</option>
 </select>
 
-<button onclick="generate()">🚀 Generate AI Pack</button>
+<button onclick="generate()">
+🚀 Generate AI Pack
+</button>
+
 </div>
 
 <div class="card">
@@ -178,87 +251,181 @@ opacity:0.6;
 </div>
 
 <div class="footer">
+
 <h3>📩 For Enquiry</h3>
 
 Instagram: ig_krissna <br>
 YouTube: ig krissna <br>
-Gmail: igkrissna@gmail.com <br><br>
+Gmail: igkrissna@gmail.com
+
+<br><br>
 
 🔥 Built for Creators
+
 </div>
 
 </div>
 
 <script>
 
-// ANIMATION
+/* FLOATING ICONS */
+
 function createPlay(){
+
 const layer=document.getElementById("animation-layer");
 
-let icons=["▶","🥈","🏆","💎","⭐","🔥"];
+let icons=["▶️","🔴","❤️","🔥","⭐","🎬"];
 
 let el=document.createElement("div");
+
 el.classList.add("play");
+
 el.innerText=icons[Math.floor(Math.random()*icons.length)];
 
 el.style.left=Math.random()*100+"vw";
-el.style.animationDuration=(2+Math.random()*3)+"s";
-el.style.fontSize=(14+Math.random()*22)+"px";
+
+el.style.animationDuration=
+(3+Math.random()*4)+"s";
+
+el.style.fontSize=
+(16+Math.random()*20)+"px";
 
 layer.appendChild(el);
 
-setTimeout(()=>el.remove(),5000);
-}
-setInterval(createPlay,200);
+setTimeout(()=>{
+el.remove();
+},7000);
 
-// GENERATE AI PACK
+}
+
+setInterval(createPlay,350);
+
+/* AI GENERATOR */
+
 function generate(){
 
-let niche=document.getElementById("niche").value.toLowerCase();
-let title=document.getElementById("title").value.toLowerCase();
+let niche=
+document.getElementById("niche")
+.value.toLowerCase();
 
-document.getElementById("tags").innerHTML="🤖 AI analyzing...";
-document.getElementById("hash").innerHTML="⚡ generating...";
+let title=
+document.getElementById("title")
+.value.toLowerCase();
+
+document.getElementById("tags").innerHTML=
+"<div class='ai-status'>🤖 AI analyzing content...</div>";
+
+document.getElementById("hash").innerHTML=
+"<div class='ai-status'>⚡ Finding viral hashtags...</div>";
 
 setTimeout(()=>{
 
 let tags=[];
 let hash=[];
 
-// BASE
-tags.push("viral video","trending","youtube shorts","must watch","2026");
-hash.push("#viral","#trending","#youtube","#shorts");
+/* BASE */
 
-// NICHE
-if(niche.includes("cricket")){
-tags.push("ms dhoni","virat kohli","ipl highlights","world cup","cricket news","ranchi stadium");
-hash.push("#cricket","#IPL","#BCCI","#worldcup");
+tags.push(
+"viral video",
+"trending",
+"youtube shorts",
+"must watch",
+"2026"
+);
+
+hash.push(
+"#viral",
+"#trending",
+"#youtube",
+"#shorts"
+);
+
+/* TITLE */
+
+if(title.includes("viral")){
+tags.push("viral content");
+hash.push("#viralcontent");
 }
+
+if(title.includes("secret")){
+tags.push("hidden facts");
+hash.push("#secret");
+}
+
+/* CRICKET */
+
+if(niche.includes("cricket")){
+tags.push(
+"ms dhoni",
+"virat kohli",
+"ipl highlights",
+"world cup",
+"cricket news"
+);
+
+hash.push(
+"#cricket",
+"#IPL",
+"#worldcup",
+"#BCCI"
+);
+}
+
+/* GAMING */
 
 if(niche.includes("gaming")){
-tags.push("bgmi","free fire","pro gameplay","headshot","live stream","esports");
-hash.push("#gaming","#BGMI","#freefire","#esports");
+tags.push(
+"bgmi",
+"free fire",
+"headshot",
+"pro gameplay",
+"esports"
+);
+
+hash.push(
+"#gaming",
+"#BGMI",
+"#freefire",
+"#esports"
+);
 }
+
+/* AI */
 
 if(niche.includes("ai")){
-tags.push("chatgpt","ai tools","future tech","automation","innovation","digital world");
-hash.push("#AI","#tech","#chatgpt","#future");
+tags.push(
+"chatgpt",
+"ai tools",
+"future tech",
+"automation",
+"innovation"
+);
+
+hash.push(
+"#AI",
+"#chatgpt",
+"#future",
+"#tech"
+);
 }
 
-// REMOVE DUPLICATES
 tags=[...new Set(tags)].slice(0,12);
 hash=[...new Set(hash)].slice(0,10);
 
-// SHOW
 document.getElementById("tags").innerHTML=
-tags.map(t=>`<span class="tag">${t}</span>`).join("");
+tags.map(
+t=>`<span class="tag">${t}</span>`
+).join("");
 
 document.getElementById("hash").innerHTML=
-hash.map(t=>`<span class="tag">${t}</span>`).join("");
+hash.map(
+t=>`<span class="tag">${t}</span>`
+).join("");
 
-},1200);
+},1500);
 
 }
+
 </script>
 
 </body>
