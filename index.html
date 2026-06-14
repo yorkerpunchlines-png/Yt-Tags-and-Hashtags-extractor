@@ -4,231 +4,265 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cinematic Creator Studio Pro</title>
-
 <style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#ffffff;color:#111;overflow-x:hidden;}
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
+.top-banner{width:100%;display:flex;justify-content:center;padding:12px;}
+.top-banner img{width:95%;max-width:550px;border-radius:20px;display:block;object-fit:cover;box-shadow:0 5px 20px rgba(0,0,0,0.15);}
 
-body{
-background:#ffffff;
-color:#111;
-overflow-x:hidden;
-}
+.header{background:#ff0000;color:white;text-align:center;padding:15px;font-size:20px;font-weight:bold;box-shadow:0 4px 15px rgba(255,0,0,0.4);}
 
-/* TOP BANNER FIXED */
-.top-banner{
-width:100%;
-display:flex;
-justify-content:center;
-padding:12px;
-}
+.container{display:flex;flex-direction:column;align-items:center;padding-bottom:20px;}
 
-.top-banner img{
-width:95%;
-max-width:550px;
-border-radius:20px;
-display:block;
-object-fit:cover;
-box-shadow:0 5px 20px rgba(0,0,0,0.15);
-}
+.card{width:90%;max-width:500px;background:white;margin-top:15px;padding:15px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.08);border:1px solid #eee;}
 
-/* HEADER */
-.header{
-background:#ff0000;
-color:white;
-text-align:center;
-padding:15px;
-font-size:20px;
-font-weight:bold;
-box-shadow:0 4px 15px rgba(255,0,0,0.4);
-}
+.card h3{margin-bottom:8px;font-size:15px;color:#333;}
 
-/* CENTER */
-.container{
-display:flex;
-flex-direction:column;
-align-items:center;
-padding-bottom:20px;
-}
+/* NICHE SCROLL */
+.niche-label{font-size:13px;font-weight:bold;color:#ff0000;margin-bottom:6px;display:block;}
 
-/* CARD */
-.card{
-width:90%;
-max-width:500px;
-background:white;
-margin-top:15px;
-padding:15px;
-border-radius:15px;
-box-shadow:0 4px 15px rgba(0,0,0,0.08);
-border:1px solid #eee;
-}
+.niche-scroll{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:#ff0000 #fff5f5;}
+.niche-scroll::-webkit-scrollbar{height:4px;}
+.niche-scroll::-webkit-scrollbar-track{background:#fff5f5;border-radius:10px;}
+.niche-scroll::-webkit-scrollbar-thumb{background:#ff0000;border-radius:10px;}
 
-/* INPUTS */
-input,select{
-width:100%;
-padding:12px;
-margin-top:10px;
-border-radius:12px;
-border:2px solid #ff0000;
-outline:none;
-font-size:16px;
-background:white;
-transition:0.3s;
+.niche-btn{
+  flex-shrink:0;
+  padding:8px 14px;
+  border:2px solid #ff0000;
+  border-radius:20px;
+  background:white;
+  color:#ff0000;
+  font-size:12px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
+  white-space:nowrap;
 }
+.niche-btn:hover,.niche-btn.active{background:#ff0000;color:white;}
 
-input:focus,select:focus{
-box-shadow:0 0 10px #ff0000;
-}
+/* TITLE INPUT */
+input{width:100%;padding:12px;margin-top:10px;border-radius:12px;border:2px solid #ff0000;outline:none;font-size:16px;background:white;transition:0.3s;}
+input:focus{box-shadow:0 0 10px #ff0000;}
 
-/* BUTTON */
-button{
-width:100%;
-padding:12px;
-margin-top:12px;
-border:none;
-border-radius:12px;
-background:#ff0000;
-color:white;
-font-weight:bold;
-font-size:16px;
-cursor:pointer;
-box-shadow:0 0 15px rgba(255,0,0,0.4);
-transition:0.3s;
-}
+select{width:100%;padding:12px;margin-top:10px;border-radius:12px;border:2px solid #ff0000;outline:none;font-size:16px;background:white;transition:0.3s;}
+select:focus{box-shadow:0 0 10px #ff0000;}
 
-button:hover{
-transform:scale(1.03);
-}
+button.gen-btn{width:100%;padding:12px;margin-top:12px;border:none;border-radius:12px;background:#ff0000;color:white;font-weight:bold;font-size:16px;cursor:pointer;box-shadow:0 0 15px rgba(255,0,0,0.4);transition:0.3s;}
+button.gen-btn:hover{transform:scale(1.03);}
+
+/* COPY BUTTON */
+.copy-btn{padding:6px 14px;border:1.5px solid #ff0000;background:white;color:#ff0000;border-radius:20px;font-size:12px;font-weight:bold;cursor:pointer;margin-left:8px;transition:0.2s;}
+.copy-btn:hover{background:#ff0000;color:white;}
+
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.card-header h3{margin:0;}
 
 /* TAGS */
-.tag{
-display:inline-block;
-padding:7px 12px;
-margin:4px;
-background:#fff5f5;
-border:1px solid #ff0000;
-color:#ff0000;
-border-radius:20px;
-font-size:12px;
-font-weight:bold;
-}
+.tag{display:inline-block;padding:7px 12px;margin:4px;background:#fff5f5;border:1px solid #ff0000;color:#ff0000;border-radius:20px;font-size:12px;font-weight:bold;}
 
-/* FOOTER */
-.footer{
-width:90%;
-max-width:500px;
-margin-top:20px;
-padding:20px;
-background:white;
-border-radius:15px;
-text-align:center;
-box-shadow:0 4px 15px rgba(0,0,0,0.08);
-border:1px solid #eee;
-}
+/* SELECTED NICHE DISPLAY */
+.selected-niche{font-size:12px;color:#888;margin-top:6px;}
+.selected-niche span{color:#ff0000;font-weight:bold;}
 
+.footer{width:90%;max-width:500px;margin-top:20px;padding:20px;background:white;border-radius:15px;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,0.08);border:1px solid #eee;}
 </style>
 </head>
-
 <body>
 
-<!-- TOP BANNER (FIXED IMAGE NAME) -->
 <div class="top-banner">
-    <img src="1000078737.jpg" alt="Banner">
+  <img src="1000078737.jpg" alt="Banner">
 </div>
 
-<!-- HEADER -->
-<div class="header">
-🔥 Cinematic Creator Studio Pro
-</div>
+<div class="header">🔥 Cinematic Creator Studio Pro</div>
 
 <div class="container">
 
-<div class="card">
+  <div class="card">
+    <span class="niche-label">🎯 Select Your Niche (Scroll →)</span>
+    <div class="niche-scroll" id="nicheScroll">
+      <button class="niche-btn" onclick="selectNiche(this,'Gaming')">🎮 Gaming</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Education')">📚 Education</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Technology')">💻 Technology</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Sports')">⚽ Sports</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Entertainment')">🎭 Entertainment</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Vlogging')">📸 Vlogging</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Finance')">💰 Finance</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Health & Fitness')">💪 Health & Fitness</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Food & Cooking')">🍽️ Food & Cooking</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Beauty & Fashion')">💄 Beauty & Fashion</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Motivation')">🔥 Motivation</button>
+      <button class="niche-btn" onclick="selectNiche(this,'News & Current Affairs')">📰 News</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Pets & Animals')">🐾 Pets & Animals</button>
+      <button class="niche-btn" onclick="selectNiche(this,'DIY & Crafts')">✂️ DIY & Crafts</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Automobile')">🚗 Automobile</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Facts & Knowledge')">🧠 Facts & Knowledge</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Movies & TV Shows')">🎬 Movies & TV</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Business')">📈 Business</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Music')">🎵 Music</button>
+      <button class="niche-btn" onclick="selectNiche(this,'Kids Content')">🧒 Kids Content</button>
+    </div>
+    <div class="selected-niche">Selected: <span id="selectedNicheText">None</span></div>
 
-<input id="niche" placeholder="Enter niche">
-<input id="title" placeholder="Enter title">
+    <input id="title" placeholder="Enter your video title (optional)">
+    <select id="lang">
+      <option>English</option>
+      <option>Hindi</option>
+      <option>Hinglish</option>
+    </select>
+    <button class="gen-btn" onclick="generate()">🚀 Generate AI Pack</button>
+  </div>
 
-<select id="lang">
-<option>English</option>
-<option>Hindi</option>
-<option>Hinglish</option>
-</select>
+  <div class="card">
+    <div class="card-header">
+      <h3>🏷 Tags</h3>
+      <button class="copy-btn" onclick="copyText('tags')">Copy</button>
+    </div>
+    <div id="tags"><span style="color:#bbb;font-size:13px;">Tags will appear here...</span></div>
+  </div>
 
-<button onclick="generate()">🚀 Generate AI Pack</button>
+  <div class="card">
+    <div class="card-header">
+      <h3>🔥 Hashtags</h3>
+      <button class="copy-btn" onclick="copyText('hash')">Copy</button>
+    </div>
+    <div id="hash"><span style="color:#bbb;font-size:13px;">Hashtags will appear here...</span></div>
+  </div>
 
-</div>
-
-<div class="card">
-<h3>🏷 Tags</h3>
-<div id="tags"></div>
-</div>
-
-<div class="card">
-<h3>🔥 Hashtags</h3>
-<div id="hash"></div>
-</div>
-
-<div class="footer">
-🔥 Built for Creators <br>
-Instagram: ig_krissna
-</div>
-
+  <div class="footer">
+    🔥 Built for Creators <br>
+    Instagram: ig_krissna
+  </div>
 </div>
 
 <script>
+const nicheData = {
+  "Gaming": {
+    tags: ["gaming","gamer","gameplay","gaming shorts","mobile gaming","pc gaming","online games","esports","live gaming","gaming tips","gaming videos","pro gamer","game review","gaming community","viral gaming","trending games","multiplayer games","gaming clips","gaming channel","gaming content"],
+    hash: ["#Gaming","#Gamer","#Gameplay","#GamingShorts","#MobileGaming","#PCGaming","#Esports","#GameReview","#OnlineGames","#ViralGaming","#TrendingGames","#GamingLife","#ProGamer","#GamingCommunity","#GameOn","#GamingVideos","#GamingContent","#Shorts","#Trending","#Viral"]
+  },
+  "Education": {
+    tags: ["education","learning","study tips","gk","general knowledge","exam preparation","online learning","educational videos","student life","competitive exams","science facts","math tricks","history facts","knowledge","learning tips","study motivation","educational shorts","learning channel","smart study","exam tips"],
+    hash: ["#Education","#Learning","#StudyTips","#GK","#Knowledge","#StudentLife","#ExamPreparation","#OnlineLearning","#EducationalVideos","#ScienceFacts","#MathTricks","#HistoryFacts","#LearningTips","#StudyMotivation","#EducationalShorts","#KnowledgePower","#LearnDaily","#Shorts","#Trending","#Viral"]
+  },
+  "Technology": {
+    tags: ["technology","tech news","gadgets","smartphone review","ai tools","tech tips","mobile phones","laptop review","gadget review","technology news","software tips","app review","artificial intelligence","tech shorts","digital world","innovation","future tech","tech updates","tech channel","tech content"],
+    hash: ["#Tech","#Technology","#Gadgets","#TechNews","#AI","#Smartphone","#TechReview","#Innovation","#FutureTech","#TechTips","#DigitalWorld","#TechUpdates","#ArtificialIntelligence","#AppReview","#LaptopReview","#TechShorts","#TrendingTech","#Shorts","#Trending","#Viral"]
+  },
+  "Sports": {
+    tags: ["sports","cricket","football","sports news","sports highlights","cricket shorts","football news","sports updates","match highlights","sports analysis","sports channel","athlete news","sports fans","live sports","sports content","cricket facts","football facts","sports clips","trending sports","viral sports"],
+    hash: ["#Sports","#Cricket","#Football","#SportsNews","#SportsHighlights","#CricketShorts","#FootballNews","#SportsUpdates","#MatchHighlights","#SportsAnalysis","#Athlete","#SportsFans","#LiveSports","#SportsContent","#TrendingSports","#ViralSports","#SportsLife","#Shorts","#Trending","#Viral"]
+  },
+  "Entertainment": {
+    tags: ["entertainment","comedy","funny videos","memes","viral videos","trending videos","entertainment news","comedy shorts","fun content","reaction videos","humor","joke videos","funny clips","entertainment channel","comedy content","viral comedy","fun videos","trending comedy","shorts video","viral content"],
+    hash: ["#Entertainment","#Comedy","#FunnyVideos","#Memes","#ViralVideo","#TrendingVideo","#ComedyShorts","#FunContent","#ReactionVideos","#Humor","#FunnyClips","#EntertainmentNews","#ComedyContent","#ViralComedy","#FunVideos","#TrendingComedy","#Shorts","#Trending","#Viral","#FYP"]
+  },
+  "Vlogging": {
+    tags: ["vlog","daily vlog","travel vlog","lifestyle vlog","vlogger","vlog channel","daily life","travel videos","life updates","personal vlog","vlog content","family vlog","adventure vlog","vlog shorts","travel content","vlog ideas","trending vlog","viral vlog","youtube vlog","vlog videos"],
+    hash: ["#Vlog","#DailyVlog","#TravelVlog","#Lifestyle","#Vlogger","#DailyLife","#TravelVideos","#LifeUpdate","#PersonalVlog","#FamilyVlog","#AdventureVlog","#VlogShorts","#TravelContent","#VlogLife","#VlogVideos","#TrendingVlog","#ViralVlog","#Shorts","#Trending","#Viral"]
+  },
+  "Finance": {
+    tags: ["finance","money","investing","stock market","personal finance","financial tips","wealth building","business finance","investment tips","stock analysis","finance news","passive income","money management","finance channel","stock market tips","financial freedom","investing basics","money tips","finance content","finance shorts"],
+    hash: ["#Finance","#Money","#Investing","#StockMarket","#PersonalFinance","#FinancialTips","#WealthBuilding","#InvestmentTips","#FinanceNews","#PassiveIncome","#MoneyManagement","#FinancialFreedom","#InvestingBasics","#MoneyTips","#FinanceChannel","#FinanceShorts","#BusinessFinance","#Shorts","#Trending","#Viral"]
+  },
+  "Health & Fitness": {
+    tags: ["fitness","workout","gym","health","weight loss","fitness tips","healthy lifestyle","gym motivation","exercise","workout routine","fitness channel","health tips","bodybuilding","muscle gain","home workout","diet plan","fitness shorts","wellness","fitness content","workout motivation"],
+    hash: ["#Fitness","#Workout","#Gym","#Health","#WeightLoss","#FitnessTips","#HealthyLifestyle","#GymMotivation","#Exercise","#WorkoutRoutine","#HealthTips","#Bodybuilding","#MuscleGain","#HomeWorkout","#DietPlan","#FitnessShorts","#Wellness","#Shorts","#Trending","#Viral"]
+  },
+  "Food & Cooking": {
+    tags: ["food","cooking","recipe","food lover","street food","cooking tips","homemade food","easy recipes","food review","cooking channel","delicious food","food shorts","kitchen tips","indian food","food content","recipe videos","food vlog","tasty recipes","cooking ideas","food videos"],
+    hash: ["#Food","#Cooking","#Recipe","#FoodLover","#StreetFood","#CookingTips","#HomemadeFood","#EasyRecipes","#FoodReview","#DeliciousFood","#FoodShorts","#KitchenTips","#IndianFood","#FoodContent","#RecipeVideos","#FoodVlog","#TastyRecipes","#Shorts","#Trending","#Viral"]
+  },
+  "Beauty & Fashion": {
+    tags: ["fashion","beauty","makeup","skincare","fashion tips","beauty tips","style guide","makeup tutorial","skincare routine","fashion trends","beauty channel","fashion shorts","style tips","beauty content","makeup hacks","fashion content","trending fashion","beauty products","outfit ideas","fashion videos"],
+    hash: ["#Fashion","#Beauty","#Makeup","#Skincare","#FashionTips","#BeautyTips","#StyleGuide","#MakeupTutorial","#SkincareRoutine","#FashionTrends","#BeautyChannel","#FashionShorts","#StyleTips","#BeautyContent","#MakeupHacks","#TrendingFashion","#OutfitIdeas","#Shorts","#Trending","#Viral"]
+  },
+  "Motivation": {
+    tags: ["motivation","motivational video","success","success tips","self improvement","personal growth","positive thinking","life lessons","inspirational stories","motivation shorts","mindset","confidence","discipline","productivity","goal setting","success mindset","self development","motivational speech","life motivation","daily motivation"],
+    hash: ["#Motivation","#Success","#SelfImprovement","#PersonalGrowth","#PositiveThinking","#LifeLessons","#Inspirational","#Mindset","#Confidence","#Discipline","#Productivity","#GoalSetting","#SuccessMindset","#SelfDevelopment","#MotivationalSpeech","#LifeMotivation","#DailyMotivation","#Shorts","#Trending","#Viral"]
+  },
+  "News & Current Affairs": {
+    tags: ["news","breaking news","current affairs","latest news","news updates","politics news","world news","india news","daily news","trending news","news analysis","current events","live news","news shorts","headlines","viral news","news channel","news report","national news","international news"],
+    hash: ["#News","#BreakingNews","#CurrentAffairs","#LatestNews","#NewsUpdates","#PoliticsNews","#WorldNews","#IndiaNews","#DailyNews","#TrendingNews","#NewsAnalysis","#CurrentEvents","#LiveNews","#NewsShorts","#Headlines","#ViralNews","#NationalNews","#InternationalNews","#Trending","#Shorts"]
+  },
+  "Pets & Animals": {
+    tags: ["pets","animals","dog","cat","pet care","animal videos","cute pets","dog videos","cat videos","pet lover","animal facts","pet training","pet shorts","wildlife","animal channel","pet content","funny animals","pet tips","cute animals","animal lover"],
+    hash: ["#Pets","#Animals","#Dog","#Cat","#PetCare","#AnimalVideos","#CutePets","#DogVideos","#CatVideos","#PetLover","#AnimalFacts","#PetTraining","#PetShorts","#Wildlife","#AnimalChannel","#FunnyAnimals","#PetTips","#CuteAnimals","#Shorts","#Viral"]
+  },
+  "DIY & Crafts": {
+    tags: ["diy","crafts","handmade","art and craft","diy projects","creative ideas","home decor","craft ideas","handmade crafts","diy shorts","art projects","paper crafts","easy diy","creative crafts","diy hacks","craft channel","diy videos","craft tutorials","handmade ideas","creative content"],
+    hash: ["#DIY","#Crafts","#Handmade","#ArtAndCraft","#DIYProjects","#CreativeIdeas","#HomeDecor","#CraftIdeas","#DIYShorts","#PaperCrafts","#EasyDIY","#CreativeCrafts","#DIYHacks","#CraftChannel","#DIYVideos","#CraftTutorials","#HandmadeIdeas","#CreativeContent","#Shorts","#Trending"]
+  },
+  "Automobile": {
+    tags: ["cars","bikes","automobile","car review","bike review","auto news","supercars","car comparison","bike comparison","vehicle review","automobile news","car shorts","bike shorts","car lover","bike lover","auto channel","vehicle tips","automotive content","latest cars","latest bikes"],
+    hash: ["#Cars","#Bikes","#Automobile","#CarReview","#BikeReview","#AutoNews","#Supercars","#CarComparison","#BikeComparison","#VehicleReview","#AutomobileNews","#CarShorts","#BikeShorts","#CarLover","#BikeLover","#AutoChannel","#LatestCars","#LatestBikes","#Shorts","#Trending"]
+  },
+  "Facts & Knowledge": {
+    tags: ["facts","amazing facts","knowledge","did you know","interesting facts","random facts","fact shorts","history facts","science facts","educational facts","unknown facts","knowledge channel","daily facts","fun facts","world facts","viral facts","informative videos","fact videos","learning facts","mind blowing facts"],
+    hash: ["#Facts","#AmazingFacts","#Knowledge","#DidYouKnow","#InterestingFacts","#RandomFacts","#FactShorts","#HistoryFacts","#ScienceFacts","#EducationalFacts","#UnknownFacts","#DailyFacts","#FunFacts","#WorldFacts","#ViralFacts","#InformativeVideos","#FactVideos","#LearningFacts","#Shorts","#Trending"]
+  },
+  "Movies & TV Shows": {
+    tags: ["movies","movie review","film review","cinema","tv shows","web series","movie facts","movie explanation","film analysis","movie shorts","cinema news","hollywood","bollywood","movie updates","movie channel","tv series review","movie clips","trending movies","entertainment movies","film content"],
+    hash: ["#Movies","#MovieReview","#FilmReview","#Cinema","#TVShows","#WebSeries","#MovieFacts","#MovieExplanation","#FilmAnalysis","#MovieShorts","#CinemaNews","#Hollywood","#Bollywood","#MovieUpdates","#TVSeries","#MovieClips","#TrendingMovies","#FilmContent","#Shorts","#Viral"]
+  },
+  "Business": {
+    tags: ["business","entrepreneur","startup","business ideas","entrepreneurship","startup stories","business tips","marketing","digital marketing","business growth","entrepreneur mindset","business channel","startup tips","online business","business shorts","success stories","company analysis","leadership","branding","business content"],
+    hash: ["#Business","#Entrepreneur","#Startup","#BusinessIdeas","#Entrepreneurship","#StartupStories","#BusinessTips","#Marketing","#DigitalMarketing","#BusinessGrowth","#EntrepreneurMindset","#StartupTips","#OnlineBusiness","#BusinessShorts","#SuccessStories","#Leadership","#Branding","#BusinessContent","#Shorts","#Trending"]
+  },
+  "Music": {
+    tags: ["music","songs","singer","music cover","cover song","music video","trending songs","music shorts","singing","musician","new songs","music channel","song cover","live music","music content","viral songs","instrumental music","remix songs","melody","music lovers"],
+    hash: ["#Music","#Songs","#Singer","#MusicCover","#CoverSong","#MusicVideo","#TrendingSongs","#MusicShorts","#Singing","#Musician","#NewSongs","#MusicChannel","#SongCover","#LiveMusic","#MusicContent","#ViralSongs","#InstrumentalMusic","#RemixSongs","#Shorts","#Trending"]
+  },
+  "Kids Content": {
+    tags: ["kids","kids videos","kids learning","cartoon","nursery rhymes","educational kids","learning videos","kids entertainment","fun learning","kids shorts","children videos","kids channel","story for kids","kids songs","learning for children","preschool learning","kids activities","educational cartoons","fun videos for kids","kids content"],
+    hash: ["#Kids","#KidsVideos","#KidsLearning","#Cartoon","#NurseryRhymes","#EducationalKids","#LearningVideos","#KidsEntertainment","#FunLearning","#KidsShorts","#ChildrenVideos","#KidsChannel","#StoryForKids","#KidsSongs","#LearningForChildren","#PreschoolLearning","#KidsActivities","#EducationalCartoons","#Shorts","#Trending"]
+  }
+};
 
-function generate(){
+let selectedNiche = null;
 
-let niche=document.getElementById("niche").value.toLowerCase();
-let title=document.getElementById("title").value.toLowerCase();
-
-document.getElementById("tags").innerHTML="Loading...";
-document.getElementById("hash").innerHTML="Loading...";
-
-setTimeout(()=>{
-
-let tags=[
-"viral video","trending","youtube shorts","must watch","2026"
-];
-
-let hash=[
-"#viral","#trending","#youtube","#shorts"
-];
-
-if(niche.includes("cricket")){
-tags.push("ms dhoni","virat kohli","ipl","world cup");
-hash.push("#cricket","#IPL","#BCCI");
+function selectNiche(btn, niche) {
+  document.querySelectorAll('.niche-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedNiche = niche;
+  document.getElementById('selectedNicheText').textContent = niche;
 }
 
-if(niche.includes("gaming")){
-tags.push("bgmi","free fire","headshot","esports");
-hash.push("#gaming","#BGMI","#freefire");
+function generate() {
+  if (!selectedNiche) {
+    alert("Please select a niche first! ☝️");
+    return;
+  }
+  document.getElementById("tags").innerHTML = "⏳ Generating...";
+  document.getElementById("hash").innerHTML = "⏳ Generating...";
+
+  setTimeout(() => {
+    const data = nicheData[selectedNiche];
+    document.getElementById("tags").innerHTML =
+      data.tags.map(t => `<span class="tag">${t}</span>`).join("");
+    document.getElementById("hash").innerHTML =
+      data.hash.map(h => `<span class="tag">${h}</span>`).join("");
+  }, 800);
 }
-
-if(niche.includes("ai")){
-tags.push("chatgpt","ai tools","future tech");
-hash.push("#AI","#tech","#chatgpt");
+ 
+function copyText(id) {
+  const el = document.getElementById(id);
+  const spans = el.querySelectorAll('.tag');
+  if (!spans.length) return;
+  const text = Array.from(spans).map(s => s.innerText).join(id === 'hash' ? ' ' : ', ');
+  navigator.clipboard.writeText(text).then(() => {
+    const btns = document.querySelectorAll('.copy-btn');
+    btns.forEach(b => {
+      if ((id === 'tags' && b.closest('.card').querySelector('#tags')) ||
+          (id === 'hash' && b.closest('.card').querySelector('#hash'))) {
+        b.textContent = '✅ Copied!';
+          setTimeout(() => b.textContent = 'Copy', 1500);
+      }
+    });
+  });
 }
-
-tags=[...new Set(tags)].slice(0,12);
-hash=[...new Set(hash)].slice(0,10);
-
-document.getElementById("tags").innerHTML=
-tags.map(t=>`<span class="tag">${t}</span>`).join("");
-
-document.getElementById("hash").innerHTML=
-hash.map(t=>`<span class="tag">${t}</span>`).join("");
-
-},1000);
-
-}
-
 </script>
-
 </body>
 </html>
+ 
