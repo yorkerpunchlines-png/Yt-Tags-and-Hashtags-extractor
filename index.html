@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cinematic Creator Studio Pro</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-87CJQST0M9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-87CJQST0M9');
+</script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 body{background:#ffffff;color:#111;overflow-x:hidden;}
@@ -236,7 +247,7 @@ function generate() {
   }
   document.getElementById("tags").innerHTML = "⏳ Generating...";
   document.getElementById("hash").innerHTML = "⏳ Generating...";
-
+ 
   setTimeout(() => {
     const data = nicheData[selectedNiche];
     document.getElementById("tags").innerHTML =
