@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cinematic Creator Studio Pro</title>
 
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4841127182287208"
+     crossorigin="anonymous"></script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-87CJQST0M9"></script>
 <script>
@@ -141,6 +145,59 @@ button.gen-btn:hover{transform:scale(1.03);}
     <div id="hash"><span style="color:#bbb;font-size:13px;">Hashtags will appear here...</span></div>
   </div>
 
+  <!-- Privacy Policy Section -->
+  <div class="card" id="privacy-policy" style="margin-top:20px;">
+    <h3 style="color:#ff0000;font-size:17px;margin-bottom:12px;">🔒 Privacy Policy</h3>
+
+    <p style="font-size:13px;color:#444;line-height:1.7;margin-bottom:10px;">
+      <strong>Last Updated:</strong> June 2025
+    </p>
+
+    <p style="font-size:13px;color:#444;line-height:1.7;margin-bottom:10px;">
+      Welcome to <strong>Cinematic Creator Studio Pro</strong>. Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you use our website.
+    </p>
+
+    <p style="font-size:13px;color:#ff0000;font-weight:bold;margin-bottom:4px;">1. Information We Collect</p>
+    <p style="font-size:13px;color:#444;line-height:1.7;margin-bottom:10px;">
+      We do not collect any personally identifiable information (name, email, phone number, etc.) directly from users. However, third-party services like Google Analytics and Google AdSense may automatically collect certain data such as your IP address, browser type, device information, and pages visited, for the purpose of analytics and advertising.
+    </p>
+
+    <p style="font-size:13px;color:#ff0000;font-weight:bold;margin-bottom:4px;">2. Google Analytics</p>
+    <p style="font-size:13px;color:#444;line-height:1.7;margin-bottom:10px;">
+      We use Google Analytics to understand how visitors interact with our website. Google Analytics collects data such as pages viewed, time spent on the site, and general location. This data is anonymous and used only to improve our website experience. You can opt out via <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color:#ff0000;">Google Analytics Opt-out</a>.
+    </p>
+
+    <p style="font-size:13px;color:#ff0000;font-weight:bold;margin-bottom:4px;">3. Google AdSense &amp; Cookies</p>
+    <p style="font-size:13px;color:#444;line-height:1.7;margin-bottom:10px;">
+      We use Google AdSense to display advertisements on our website. Google may use cookies to show ads based on your previous visits to this or other websites. You can manage your ad preferences at <a href="https://www.google.com/settings/ads" target="_blank" style="color:#ff0000;">Google Ad Settings</a>. For more information, visit <a href="https://policies.google.com/technologies/ads" target="_blank" style="color:#ff0000;">Google's Advertising Policy</a>.
+    </p>
+
+    <p style="font-size:13px;color:#ff0000;font-weight:bold;margin-bottom:4px;">4. Cookies</p>
+    <p style="font-size:13px;color:#444;line-height:1.7;margin-bottom:10px;">
+      Our website may use cookies to enhance user experience and serve relevant ads. By using our website, you consent to the use of cookies as described in this policy. You can disable cookies through your browser settings at any time.
+    </p>
+
+    <p style="font-size:13px;color:#ff0000;font-weight:bold;margin-bottom:4px;">5. Third-Party Links</p>
+    <p style="font-size:13px;color:#444;line-height:1.7;margin-bottom:10px;">
+      Our website may contain links to third-party websites. We are not responsible for the privacy practices or content of those websites. We encourage you to read their privacy policies separately.
+    </p>
+
+    <p style="font-size:13px;color:#ff0000;font-weight:bold;margin-bottom:4px;">6. Children's Privacy</p>
+    <p style="font-size:13px;color:#444;line-height:1.7;margin-bottom:10px;">
+      Our website is not directed toward children under the age of 13. We do not knowingly collect any personal information from children.
+    </p>
+
+    <p style="font-size:13px;color:#ff0000;font-weight:bold;margin-bottom:4px;">7. Changes to This Policy</p>
+    <p style="font-size:13px;color:#444;line-height:1.7;margin-bottom:10px;">
+      We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date. We encourage you to review this page periodically.
+    </p>
+
+    <p style="font-size:13px;color:#ff0000;font-weight:bold;margin-bottom:4px;">8. Contact Us</p>
+    <p style="font-size:13px;color:#444;line-height:1.7;">
+      If you have any questions about this Privacy Policy, you can contact us via Instagram: <a href="https://instagram.com/ig_krissna" target="_blank" style="color:#ff0000;">@ig_krissna</a>
+    </p>
+  </div>
+
   <div class="footer">
     🔥 Built for Creators <br>
     Instagram: ig_krissna
@@ -247,7 +304,7 @@ function generate() {
   }
   document.getElementById("tags").innerHTML = "⏳ Generating...";
   document.getElementById("hash").innerHTML = "⏳ Generating...";
- 
+
   setTimeout(() => {
     const data = nicheData[selectedNiche];
     document.getElementById("tags").innerHTML =
@@ -256,7 +313,7 @@ function generate() {
       data.hash.map(h => `<span class="tag">${h}</span>`).join("");
   }, 800);
 }
- 
+
 function copyText(id) {
   const el = document.getElementById(id);
   const spans = el.querySelectorAll('.tag');
@@ -276,4 +333,3 @@ function copyText(id) {
 </script>
 </body>
 </html>
- 
